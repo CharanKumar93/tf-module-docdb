@@ -1,6 +1,6 @@
 resource "aws_docdb_subnet_group" "default" {
   name       = "main"
-  subnet_ids = [aws_subnet.frontend.id, aws_subnet.backend.id]
+  subnet_ids = var.subnet_ids
 
   tags = {
     Name = "My docdb subnet group"
