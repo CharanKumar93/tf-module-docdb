@@ -33,3 +33,19 @@ resource "aws_security_group" "docdb" {
     { Name = "${var.env}-docdb-security-group" }
   )
 }
+
+resource "aws_docdb_cluster" "docdb" {
+  cluster_identifier      = "${var.env}-docdb-cluster"
+  engine                  = "docdb"
+  master_username         =  data.aws_ssm_parameter.DB_ADMIN_USER.value
+  master_password         =  data.aws_ssm_parameter.DB_ADMIN_PASS.value
+  skip_final_snapshot     = true
+
+  tags = merge(
+    local.common_tags,
+    { Name = "${var.env}-docdb-cluster" }
+  )
+}
+
+
+
