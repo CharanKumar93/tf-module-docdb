@@ -50,7 +50,6 @@ resource "aws_docdb_cluster" "docdb" {
   )
 }
 
-data "aws_ssm_parameter" "DB_ADMIN_USER"
 
 
 
